@@ -10,9 +10,9 @@ Originally built as a simple LSB (Least Significant Bit) detector, StegX has evo
 
 ---
 
-## 🚀 Features
+## Features
 
-### 🔍 Multi-Format Detection Engine
+### Multi-Format Detection Engine
 *   **Images (`.png`, `.bmp`, `.jpg`)**
     *   **Chi-Square Statistical Analysis:** Detects unnatural pairing of pixel values caused by LSB embedding.
     *   **Histogram Analysis:** Visually and mathematically flags structural flattening.
@@ -23,20 +23,20 @@ Originally built as a simple LSB (Least Significant Bit) detector, StegX has evo
     *   **Office ZIP Anomalies:** Tears down `.docx` XML structures to hunt for hidden executable binaries or missing manifests.
     *   **PDF Structural Anomalies:** Parses raw bytes to flag data appended after `%%EOF` markers or malicious `/JavaScript` embeddings.
 
-### 🧬 Forensic File Triage
+### Forensic File Triage
 *   **Automatic Identification:** Automatically determines MIME types and file sizes.
 *   **Cryptographic Hashing:** Generates SHA-256 hashes for all analyzed files to maintain chain-of-custody integrity.
 *   **Metadata Extraction:** Extracts EXIF data and flags abnormally long hidden strings in `UserComment` or `Software` tags.
 
-### 🛠 Automated Payload Extraction
+### Automated Payload Extraction
 *   If StegX achieves high confidence that a supported LSB technique was used, it will automatically attempt to carve and recover the hidden payload, presenting it safely in the terminal.
 
-### 📊 Professional Reporting
+### Professional Reporting
 *   Generates rich, easy-to-read CLI reports and saves the full structured output to `analysis.json`.
 
 ---
 
-## 🏗️ Project Architecture
+## Project Architecture
 
 ```text
 User Input
@@ -63,7 +63,7 @@ Forensic Report Generation (JSON & CLI)
 
 ---
 
-## ⚙️ Installation
+## Installation
 
 1. Clone the repository:
    ```bash
@@ -77,7 +77,7 @@ Forensic Report Generation (JSON & CLI)
 
 ---
 
-## 💻 Usage
+## Usage
 
 The main entry point for StegX is `main.py`.
 
@@ -96,7 +96,7 @@ python main.py encode -i <clean_image.png> -m "My secret payload" -o <stego_imag
 
 ---
 
-## 📋 Example Output
+## Example Output
 
 ```text
 ====================================
@@ -161,5 +161,5 @@ analysis.json
 
 ---
 
-## 🎓 Educational Disclaimer
+## Educational Disclaimer
 This toolkit was developed for educational purposes, digital forensics research, and cybersecurity portfolio demonstration. Do not use this tool on files or systems you do not have explicit permission to analyze.
