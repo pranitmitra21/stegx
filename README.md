@@ -79,24 +79,34 @@ Forensic Report Generation (JSON & CLI)
 
 ## Usage
 
-The main entry point for StegX is `main.py`.
+The main entry point for StegX is `main.py`. The tool now features an interactive, professional-grade CLI menu.
 
-### 1. Analyze a File
-To run a full forensic analysis on any supported file:
+To start StegX, simply run:
 ```bash
-python main.py analyze -i <path_to_file>
+python main.py
 ```
-*Example:* `python main.py analyze -i test_dataset/suspicious.png`
 
-### 2. Encode a Test File (Utility)
-StegX includes a utility to inject custom hidden messages into clean images so you can test the detection engines:
-```bash
-python main.py encode -i <clean_image.png> -m "My secret payload" -o <stego_image.png>
+### Main Menu
+Upon starting, you will be greeted by the StegX banner and the main menu:
+```text
+StegX> 
+1) Scan File & Detect Steganography
+2) Scan Folder
+3) Extract Hidden Payload
+4) Analyze Metadata
+...
+13) Encode Secret Message (Testing Utility)
+0) Exit
 ```
+
+*   **Analyze a File:** Select `1` and follow the prompt to enter the path of your suspicious file.
+*   **Encode a Test File:** Select `13` to inject a hidden message into a clean image for testing the detection engines.
 
 ---
 
 ## Example Output
+
+When an analysis is complete, StegX uses `Rich` to generate beautiful, color-coded terminal reports:
 
 ```text
 ====================================
@@ -104,58 +114,45 @@ StegX v1.0
 Advanced Steganography Analyzer
 ====================================
 
-Target File
-test_stego_image.png
+File Information
+┌─────────────┬────────────────────────────────────┐
+│ Property    │ Value                              │
+├─────────────┼────────────────────────────────────┤
+│ Target File │ suspicious.png                     │
+│ File Type   │ image/png                          │
+│ Size        │ 430.20 KB                          │
+│ SHA256      │ 894e270b...                        │
+└─────────────┴────────────────────────────────────┘
 
-File Type
-image/png
-
-Size
-430.20 KB
-
-SHA256
-894e270b1c1aec6a48f186cb3bfc18d4fda88fee3732baaa3a585f105aa309a2
-
-------------------------------------
-Metadata
-[+] Clean (No EXIF data found.)
-
-------------------------------------
 Detection Results
+┌───────────┬────────────┬───────────┐
+│ Detector  │ Confidence │ Raw Score │
+├───────────┼────────────┼───────────┤
+│ LSB       │ 99%        │ N/A       │
+│ Histogram │ 95%        │ N/A       │
+│ Entropy   │ 90%        │ 7.9977    │
+└───────────┴────────────┴───────────┘
 
-LSB
-99%
+╭────────────────────────── Result ──────────────────────────╮
+│ Overall Confidence: 100%                                   │
+╰────────────────────────────────────────────────────────────╯
 
-Histogram
-95%
+[!] Likely Steganography Detected
+Technique: LSB
 
-Entropy
-90%
-(Raw Score: 7.9977)
+Extraction Payload
+┌───────────────┬─────────────────┐
+│ Property      │ Value           │
+├───────────────┼─────────────────┤
+│ Payload Found │ Yes             │
+│ Type          │ Text            │
+│ Recovered     │ Successfully    │
+└───────────────┴─────────────────┘
 
-Overall Confidence
-100%
+╭────────────────────────── Payload ─────────────────────────╮
+│ 'This is a secret message hidden inside the image pixels.' │
+╰────────────────────────────────────────────────────────────╯
 
-Likely Steganography Detected
-
-------------------------------------
-Technique
-LSB
-
-------------------------------------
-Extraction
-
-Payload Found
-Type: Text
-Recovered: Successfully
-
-------------------------------------
-Payload
-'This is a secret message hidden inside the image pixels...'
-
-------------------------------------
-Report Saved
-analysis.json
 ====================================
 ```
 
